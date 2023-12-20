@@ -1,0 +1,176 @@
+<div id="mw-wrapper" class="min-h-screen overflow-x-hidden">
+	{{>Navigation}}
+	<main class="mt-16 md:mt-18">
+		{{>Hero}}
+		{{#showPageToolbar}}
+			<div class="flex flex-col text-center bg-gray-100 flex-items-center">
+				<ul class="flex flex-row gap-4 mx-auto" 
+					x-data="{
+						action: '',
+						params: null
+					}"
+					x-init="
+						params = new URLSearchParams(window.location.search.substring(1));
+						action = params.get('action') || ''
+					"
+				>
+					<li class="px-2 py-2" x-bind:class="{ 'border-t-4 border-pink-600': action == '' }">
+						<a @click="action=''; sessionStorage.setItem('x-action', '');"  
+							href="/index.php?title={{title}}"
+						>
+							Read
+						</a>
+					</li>
+					<li class="px-2 py-2" x-bind:class="{ 'border-t-4 border-pink-600': action == 'history' }">
+						<a @click="action='history'; sessionStorage.setItem('x-action', 'history');"
+							href="/index.php?title={{title}}&action=history"
+						>
+							History
+						</a>
+					</li>			
+					<li id="ca-ve-edit" class="px-2 py-2" x-bind:class="{ 'border-t-4 border-pink-600 mw-editsection': action == 'edit' }">
+						<a @click="action='edit'; sessionStorage.setItem('x-action', 'edit');"
+							href="?title={{title}}&action=edit"
+						>
+							Edit
+						</a>
+					</li>
+					<li class="hidden px-2 py-2" 
+						x-bind:class="{ 
+							'border-t-4 border-pink-600': action === 'edit',
+							hidden: !(/Template:[\w+]/.test('{{title}}'))
+						}"
+					>
+						<a @click="action='template-edit'; sessionStorage.setItem('x-action', 'template-edit');"
+							href="?title={{title}}&action=Edit"
+						>
+							Edit
+						</a>
+					</li>
+					<li class="px-2 py-2" x-bind:class="{ 'border-t-4 border-pink-600': action == 'delete' }">
+						<a @click="action='delete'; sessionStorage.setItem('x-action', 'delete');"
+							href="?title={{title}}&action=delete"
+						>
+							Delete
+						</a>
+					</li>
+					<li class="px-2 py-2" x-bind:class="{ 'border-t-4 border-pink-600': action == 'move' }">
+						<a @click="action='move'; sessionStorage.setItem('x-action', 'move');"
+							href="/wiki/Special:MovePage/{{title}}"
+						>
+							Move
+						</a>
+					</li>
+				</ul>
+			</div>
+		{{/showPageToolbar}}
+		
+		
+		{{#isMainPage}}
+			{{!}}{{#links}}{{>Components/Card}}{{/links}}
+			{{{html-body-content}}}
+		{{/isMainPage}}
+		
+		{{^isMainPage}}
+			{{^showPageToolbar}}
+				<div class="flex flex-col mx-auto text-center flex-items-center md:max-w-5xl"  x-data="{
+						shareUrl: window.location.href,
+						title: '{{title}}' 
+					}"
+					:class="{ hidden: /[\w+]:[\w+]/.test(title) }"
+					>
+					<ul class="flex flex-row gap-4 px-2 my-2 ml-auto md:p-0">
+						{{! <li> Share </li> }}
+						<li>
+							<div class="fb-share-button" :data-href="shareUrl" data-layout="button_count" data-size="large">
+								<a target="_blank" 
+								:href="`https://www.facebook.com/sharer/sharer.php?u=#{shareUrl}&amp;src=sdkpreparse`" class="fb-xfbml-parse-ignore">Share</a>
+							</div>
+						</li>
+						<li>
+							<a class="twitter-share-button"
+							target="_blank" 
+							data-size="large"
+							href="https://twitter.com/intent/tweet"
+							:data-url="shareUrl">
+							Tweet</a>
+						</li>
+					</ul>
+				</div>
+			{{/showPageToolbar}}
+			<div id="content" x-data="{ title: '{{title}}' }" >
+				<div class="flex flex-col p-2 mx-auto text-center md:pt-8 md:pb-4 flex-items-center" :class="{ 'md:max-w-5xl': title !== 'Special:Search'}"">
+					<h1 id="firstHeading" class="mt-2 text-3xl font-black uppercase md:text-4xl text-black-leni"
+						x-data='{ title: "{{html-title}}" }',
+						x-text="title.replace('Category:', '')"
+						
+						{{{html-user-language-attributes}}}>{{{html-title}}}
+					</h1>
+					<div class="flex flex-row mw-indicators mw-body-content">
+						{{#array-indicators}}
+								<!-- <div id="{{id}}" class="{{class}}">{{{html}}}</div> -->
+						{{/array-indicators}}
+					</div>
+				</div>
+				<div class="flex flex-col px-2 pt-0 pb-4 md:px-0 md:mx-auto gap-y-2" :class="{
+					'md:max-w-5xl': title !== 'Special:Search'
+				}">
+				
+					<div id="data-portlets">
+						{{#data-portlets}}
+				
+						{{/data-portlets}}
+					</div>
+					
+					<div id="siteNotice">
+						{{{html-site-notice}}}
+					</div>
+					
+					{{{html-user-message}}}
+
+					<!--
+					<div id="siteSub">{{msg-tagline}}</div>
+					-->
+					
+					<!-- After Content -->
+					<div class="mw-body-content">
+					
+						<div id="contentSub">
+							{{{html-subtitle}}}
+							{{{html-undelete-link}}}
+						</div>
+						
+						{{{html-body-content}}}
+						
+					</div>
+					<!-- After Content -->
+					{{{html-after-content}}}
+				
+				</div>
+			</div>
+		{{/isMainPage}}
+		
+	</main>
+</div>
+
+{{^isMainPage}}
+
+		<div x-data="{ title: '{{title}}' }" 
+			class="grid hidden grid-cols-1 px-1 py-1 mx-auto bg-gray-100 md:px-0 px md:grid-cols-5" 
+			:class="{ hidden: /[\w+]:[\w+]/.test(title) }"
+		>								
+			<!-- Categories -->
+			<div class="mx-auto md:col-start-2 md:col-span-3">
+				{{{html-categories}}}
+			</div>
+		</div>
+		
+{{/isMainPage}}
+				
+
+
+{{>Footer}}
+<div id="twitter-wjs"></div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=961526484605983&autoLogAppEvents=1" nonce="XTZfp4VW"></script>
+<script type="text/javascript" async defer src="https://platform.twitter.com/widgets.js"></script>

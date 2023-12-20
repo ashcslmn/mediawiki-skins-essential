@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .mw-parser-output {
+  @apply prose md:prose-xl max-w-screen-lg
+} */
+
+.wikitable {
+  @apply table-auto
+}
+
+/* #mw-pages .mw-content-ltr {
+  @apply prose my-4
+} */
+/* Page */
+/* Page Search */
+/* Page Category */
+#mw-content-text > .mw-parser-output,
+#mw-content-text > .mw-category-generated,
+#mw-content-text > .mw-content-ltr,
+#mw-content-text > .noarticletext,
+#mw-content-text > #wikiPreview,
+#mw-content-text > .mw-newarticletext,
+div.ve-ce-rootNode.mw-content-ltr.mw-parser-output 
+{
+  @apply prose lg:prose-lg mx-auto
+}
+
+/* div.ve-ce-rootNode.mw-content-ltr.mw-parser-output ::after {
+  @apply prose lg:prose-lg mx-auto
+}
+div.ve-ce-rootNode.mw-content-ltr.mw-parser-output ::after {
+  @apply prose lg:prose-lg mx-auto
+} */
+/* div.ve-ce-rootNode.mw-content-ltr.mw-parser-output ul,  
+div.ve-ce-rootNode.mw-content-ltr.mw-parser-output ol {
+    list-style:disc;
+}
+div.ve-ce-rootNode.mw-content-ltr.mw-parser-output p::after{
+    content: "\a";
+    white-space: pre;
+} */
+#mw-content-text .mw-editform {
+  @apply py-4
+}
+#mw-content-text .mw-editform,
+#mw-content-text .mw-editform textarea {
+  @apply max-w-2xl mx-auto
+}
+
+#mw-content-text > #mw-pages {
+  
+}
+/* #mw-content-text > .searchresults {
+  @apply prose-sm md:prose lg:prose-lg mx-auto
+} */
+#mw-content-text > .mw-search-form-wrapper {
+  max-width: 42rem !important;
+  @apply mx-auto md:p-0;
+}
+
+#mw-search-top-table :not(.results-info) * {
+  @apply hidden
+}
+#mw-content-text .search-types ul {
+  @apply flex flex-row  justify-center items-stretch
+}
+#mw-content-text .search-types {
+  @apply px-0 mx-auto
+}
+#mw-content-text .search-types li.current {
+  @apply bg-pink-leni;
+}
+#mw-content-text .search-types li.current a{
+  @apply text-white;
+}
+/* 
+.mw-parser-output {
+  @apply prose mx-auto
+}  */
+/*
+.mw-spcontent :not(.mw-htmlform-ooui-wrapper) {
+  @apply prose
+}
+
+
+
+#mw-subcategories .mw-content-ltr {
+  @apply prose my-4
+}
+
+.mw-parser-output {
+  @apply prose
+} 
+
+#pagehistory {
+  @apply prose-sm py-4
+}
+
+#mw-content-text .mw-category-generated {
+  @apply mx-auto prose;
+}
+
+.noarticletext,
+.mw-category-generated #mw-pages {
+  @apply prose-sm text-gray-800;
+}
+
+.mw-category-generated  #mw-pages .mw-content-ltr {
+  @appy prose md:prose-sm lg:prose-sm
+} */
+
+
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
+    color: #fff;
+    background-color: #ce1069;
+    border-color: #ce1069;
+}
+
+.oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button {
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
+}
+
+#mw-normal-catlinks {
+    padding: 6px;
+}
+
+#mw-normal-catlinks  {
+    display: flex;
+    flex-direction: row;
+}
+#mw-normal-catlinks  ul {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+    column-gap: 10px;
+}
+
+.mw-parser-output > h2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mw-parser-output .mw-editsection a {
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.mw-parser-output .mw-editsection span {
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.mw-parser-output span.mw-editsection {
+  @apply float-right;
+}
+
+.mw-parser-output .mw-editsection a:nth-of-type(2),
+.mw-parser-output .mw-editsection .mw-editsection-divider {
+  display: none;
+}
+
+a.external.text {
+    background-color: #F3F4F6;
+    text-decoration: underline;
+    color:#ce1069;
+}
+
+a.new {
+    background-color: #F3F4F6;
+    text-decoration: underline;
+    color:#ce1069;
+}
+
+#mw-returnto a {
+  background-color: #F3F4F6;
+  text-decoration: underline;
+  color:#ce1069;
+}
+
+/* Print footer should be hidden by default in screen. */
+.printfooter {
+	display: none;
+}
+
+
+
+/* .mw-editform textarea {
+    display: none !important;
+   
+} */
+
+/* #mw-pages h2:first-of-type {
+  @apply hidden;
+}  */
+
+/* .mw-category-generated  #mw-pages .mw-content-ltr h3 {
+  display: none !important;
+} */
+
+form.mw-htmlform {
+  @apply mx-auto;
+}
+
+#mw-subcategories ul > li::before
+{
+  background-color: #ffffff !important;
+}
+
+
+
+@keyframes blink {
+  0% {
+      opacity: 0;
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0;
+  }
+}
+.typer .blinker {
+  animation: blink infinite 500ms;
+}
+
+
+.truncate2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+}
+
+#mw-search-profile-tabs {
+  @apply hidden; 
+}
+
+.mw-search-form-wrapper form {
+  @apply hidden; 
+}
+
+div.mw-search-result-heading {
+  @apply md:text-xl text-lg
+}
+
+div.mw-search-result-heading a {
+  @apply font-semibold tracking-wide underline text-blue-leni line-clamp-1;
+  text-overflow: ellipsis;
+}
+
+div.mw-search-result-data {
+  @apply text-xs line-clamp-2
+}
+
+div.searchresults {
+  @apply flex md:w-3/4 flex-col mx-auto px-2 md:p-0 
+}
+
+div.searchresults h2 {
+  @apply mt-2
+}
+
+
+div.searchresults span.mw-headline {
+  @apply text-pink-leni bg-gray-100 p-0.5  font-bold italic my-3
+}
+
+ul.mw-search-results {
+  @apply flex flex-row md:w-full flex-wrap  min-w-full gap-y-4 md:gap-y-6
+}
+ul.mw-search-results li {
+  @apply md:w-1/3  p-1 w-full hover:bg-gray-200 
+}
+
+div.searchresult {
+  @apply hidden
+}

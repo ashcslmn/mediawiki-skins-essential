@@ -1,0 +1,11 @@
+<div class="flex items-center" role="banner">
+    <a href="{{link-mainpage}}" class="flex flex-row items-center gap-x-1">
+    {{#data-logos}}
+        {{#logoessential}}<img src="{{.}}" width="{{width}}" height="{{height}}" class="h-8" alt="pinkpedia">{{/logoessential}}
+        {{#wordmark}}<img src="{{src}}" width="{{width}}" height="{{height}}">{{/wordmark}}
+        {{^wordmark}}<h1 alt="{{msg-sitetitle}}" class="">
+            <span class="text-2xl font-extrabold tracking-wide uppercase text-pink-leni">pink<span class="px-0 text-black-leni">pedia</span></span><span class="text-base -scale-50">.org</span>
+        </h1>{{/wordmark}}
+    {{/data-logos}}
+    </a>
+</div>
